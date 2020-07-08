@@ -40,6 +40,10 @@
       console.log("number:"+number);
     }
 
+
+
+
+
     function exchange(){
       if(tiles[row][column-1]==0){
         console.log('right');
@@ -75,39 +79,53 @@
         tiles[row].splice(column,1,0);
       }
 
-      if(tiles[row-1][column]==0){
-        console.log('bottom');
+      if(row>=1){
+        if(tiles[row-1][column]==0){
+          console.log('bottom');
 
-        context.drawImage(
-          image,
-          number%4*70,Math.floor(number/4)*70,70,70,
-          column*70,row*70-70,70,70
-        );
-        context.drawImage(
-          image,
-          0,0,70,70,
-          column*70,row*70,70,70
-        );
-        tiles[row-1].splice(column,1,tiles[row][column]);
-        tiles[row].splice(column,1,0);
+          context.drawImage(
+            image,
+            number%4*70,Math.floor(number/4)*70,70,70,
+            column*70,row*70-70,70,70
+          );
+          context.drawImage(
+            image,
+            0,0,70,70,
+            column*70,row*70,70,70
+          );
+          tiles[row-1].splice(column,1,tiles[row][column]);
+          tiles[row].splice(column,1,0);
+        }
       }
 
-      if(tiles[row+1][column]==0){
-        console.log('up');
+      if(row<=2){
+        if(tiles[row+1][column]==0){
+          console.log('up');
 
-        context.drawImage(
-          image,
-          number%4*70,Math.floor(number/4)*70,70,70,
-          column*70,row*70+70,70,70
-        );
-        context.drawImage(
-          image,
-          0,0,70,70,
-          column*70,row*70,70,70
-        );
-        tiles[row+1].splice(column,1,tiles[row][column]);
-        tiles[row].splice(column,1,0);
+          context.drawImage(
+            image,
+            number%4*70,Math.floor(number/4)*70,70,70,
+            column*70,row*70+70,70,70
+          );
+          context.drawImage(
+            image,
+            0,0,70,70,
+            column*70,row*70,70,70
+          );
+          tiles[row+1].splice(column,1,tiles[row][column]);
+          tiles[row].splice(column,1,0);
+        }
       }
+
+      if(tiles==[
+        [1,2,3,4],
+        [5,6,7,8],
+        [9,10,11,12],
+        [13,14,15,0]
+      ]){
+        console,log('clear');
+      }
+
 
 
 
@@ -120,6 +138,7 @@
       //context.fillRect(x,y,10,10);
       coordinate();
       exchange();
+      //exchengeTest()
     }
 
     connecting();
